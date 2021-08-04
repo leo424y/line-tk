@@ -1,5 +1,6 @@
 class LinesController < ApplicationController
   before_action :set_line, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /lines
   def index
