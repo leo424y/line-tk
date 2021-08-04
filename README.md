@@ -59,4 +59,4 @@ Once the server is started the application is reachable at
 
 
 ## log
-8/4 line.tk
+8/4 17:00 line.tk
