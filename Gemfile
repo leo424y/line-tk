@@ -11,7 +11,7 @@ ruby "2.6.6"
 gem "autoprefixer-rails"
 
 gem "bootsnap", require: false
-gem "honeybadger"
+# gem "honeybadger"
 gem "pg"
 gem "puma"
 gem "rack-canonical-host"
