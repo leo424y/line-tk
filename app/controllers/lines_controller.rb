@@ -4,10 +4,19 @@ class LinesController < ApplicationController
   # GET /lines
   def index
     @lines = Line.all
+
+    respond_to do |format|
+      format.html
+      format.json { json_response(@lines)}
+    end
   end
 
   # GET /lines/1
   def show
+    respond_to do |format|
+      format.html
+      format.json { json_response(@line) }
+    end
   end
 
   # GET /lines/new
