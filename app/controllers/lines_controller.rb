@@ -4,8 +4,7 @@ class LinesController < ApplicationController
 
   # GET /lines
   def index
-    @lines = Line.all
-
+    @lines = Line.all.order('updated_at DESC')
     respond_to do |format|
       format.html
       format.json { json_response(@lines)}
@@ -32,6 +31,7 @@ class LinesController < ApplicationController
   # POST /lines
   def create
     @line = Line.new(line_params)
+    @line.note = CGI.unescape(params[:line][:note])
 
     if @line.save
       redirect_to @line, notice: 'Line was successfully created.'
