@@ -12,3 +12,35 @@
 
 <%= link_to 'Edit', edit_line_path(@line) %> |
 <%= link_to 'Back', lines_path %>
+<div id="log" target='_blank'><%= "#{@line.url}#:~:text=#{CGI.escape @line.note}" %></div>
+<button onclick="bitly()">shorten</button>
+
+<script>
+const log = document.getElementById('log');
+function bitly(){
+fetch('https://api-ssl.bitly.com/v4/shorten', {
+    method: 'POST',
+    headers: {
+        'Authorization': 'Bearer 4f231d5f658fbb0c156377a46fbb27210402f9d2',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ "long_url": log.textContent, "domain": "flyis.me" })
+}).then((response) => {
+    // 這裡會得到一個 ReadableStream 的物件
+    console.log(response);
+    // 可以透過 blob(), json(), text() 轉成可用的資訊
+    return response.json();
+  }).then((jsonData) => {
+    console.log(jsonData);
+  //   var result = JSON.stringify(jsonData, null, 2);
+  // bly.textContent = result;
+
+  // blys.textContent = jsonData.link;
+  // blys.href = jsonData.link;
+}).catch((err) => {
+    console.log('錯誤:', err);
+});
+}
+
+window.onload = bitly;
+</script>
