@@ -31,6 +31,7 @@ class LinesController < ApplicationController
   # POST /lines
   def create
     @line = Line.new(line_params)
+    @line.url = CGI.unescape(params[:line][:url])
     @line.note = CGI.unescape(params[:line][:note])
 
     if @line.save
