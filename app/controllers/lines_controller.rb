@@ -13,7 +13,7 @@ class LinesController < ApplicationController
 
   def lihi
     params[:q] = {"note_cont": params[:lihi]}
-    @q = Line.ransack(params[:q]).result.last
+    @q = Line.ransack(params[:q]).result.order(Arel.sql('RANDOM()')).first
     redirect_to "#{@q.url}#:~:text=#{@q.note}"
   end
   # GET /lines
