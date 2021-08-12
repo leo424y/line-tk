@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'lines#index'
   get :autocomplete_lines, to: 'lines#autocomplete'
 
-  get 'lines',
+  get '/',
   to: 'lines#index',
   constraints: ->(request){ request.query_parameters["i"].present? }
 

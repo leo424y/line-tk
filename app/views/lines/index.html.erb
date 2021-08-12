@@ -1,19 +1,34 @@
 <% if params[:i] %>
-  <% if @hili.present? %>
-    <%= link_to @hili, @hili %>
-  <% else %>
-    'Wrong url: please do "https://hili.link?i=YOURNOTE.https://YOURURL"'
-  <% end %>
+<% if @hili.present? %>
+<%= link_to @hili, @hili %>
+<button onclick="copyToClipboard('<%= @hili %>')">copy</button>
+<p>random redirect to links:</p>
+<table>
+  <tbody>
+    <% @lines.each do |line| %>
+    <tr>
+      <td>
+        <% hili = "#{line.url}#:~:text=#{line.note}" %>
+        <%= link_to notify(line.note), hili, target: '_blank', style: "text-decoration:none; color:gray" %>
+        <button onclick="copyToClipboard('<%= hili %>')">copy</button>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+'Wrong url: please do "https://hili.link?i=YOURNOTE.https://YOURURL"'
+<% end %>
 <% else %>
 <div class="mt-4 sm:flex sm:max-w-md">
-<div data-controller="autocomplete" data-autocomplete-url-value="/autocomplete_lines">
-<%= search_form_for @q do |f| %>
-  <%# f.label :url_or_note_cont %>
-  <%= f.search_field :url_or_note_cont, 'data-autocomplete-target': "input" %>
-  <ul data-autocomplete-target="results"></ul>
-  <%# f.submit %>
-<% end %>
-</div>
+  <div data-controller="autocomplete" data-autocomplete-url-value="/autocomplete_lines">
+    <%= search_form_for @q do |f| %>
+    <%# f.label :url_or_note_cont %>
+    <%= f.search_field :url_or_note_cont, 'data-autocomplete-target': "input" %>
+    <ul data-autocomplete-target="results"></ul>
+    <%# f.submit %>
+    <% end %>
+  </div>
 </div>
 
 
@@ -24,7 +39,7 @@
 -->
 
 <table>
-<!--
+  <!--
   <thead>
     <tr>
       <th>link-to-text</th>
@@ -36,9 +51,11 @@
 -->
   <tbody>
     <% @lines.each do |line| %>
-      <tr>
-        <td><%= link_to notify(line.note), "#{line.url}#:~:text=#{line.note}", target: '_blank', style: "text-decoration:none; color:gray" %></td>
-<!--
+    <tr>
+      <td>
+        <%= link_to notify(line.note), "#{line.url}#:~:text=#{line.note}", target: '_blank', style: "text-decoration:none; color:gray" %>
+      </td>
+      <!--
         <td><%= link_to 'Show', line %></td>
         <td><%= link_to 'Edit', edit_line_path(line) %></td>
         <td><%= link_to 'Destroy', line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -46,10 +63,36 @@
         <td><%= notify line.note %></td>
 -->
 
-      </tr>
+    </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
 <% end %>
+
+
+
+<script type="text/javascript">
+    function copyToClipboard(message) {
+        var textArea = document.createElement("textarea");
+        textArea.value = message;
+        textArea.style.opacity = "0"; 
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            alert(textArea.value+' was copied')
+            //alert('Copying text command was ' + msg);
+        } catch (err) {
+            alert('Unable to copy value , error : ' + err.message);
+        }
+
+        document.body.removeChild(textArea);
+    }
+
+</script>

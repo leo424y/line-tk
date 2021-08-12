@@ -18,7 +18,10 @@ class LinesController < ApplicationController
   end
   # GET /lines
   def index
-    @hili = hilify(params[:i]) if params[:i]
+    if params[:i]
+      @hili = hilify(params[:i])
+      params[:q] = {"note_cont": params[:i].split('https://')[0]}
+    end
 
     @q = Line.ransack(params[:q])
     @lines = @q.result(distinct: true).order(updated_at: :desc)
