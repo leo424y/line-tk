@@ -11,6 +11,11 @@ class LinesController < ApplicationController
     render layout: false
   end
 
+  def lihi
+    params[:q] = {"note_cont": params[:lihi]}
+    @q = Line.ransack(params[:q]).result.last
+    redirect_to "#{@q.url}#:~:text=#{@q.note}"
+  end
   # GET /lines
   def index
     hilify(params[:i]) if params[:i]
