@@ -29,7 +29,7 @@
   <tbody>
     <% @lines.each do |line| %>
       <tr>
-        <td><%= link_to notify(line.note), "#{line.url}#:~:text=#{line.note}", target: '_blank' %></td>
+        <td><%= link_to notify(line.note), "#{line.url}#:~:text=#{line.note}", target: '_blank', style: "text-decoration:none" %></td>
 <!--
         <td><%= link_to 'Show', line %></td>
         <td><%= link_to 'Edit', edit_line_path(line) %></td>
