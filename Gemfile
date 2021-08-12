@@ -24,6 +24,7 @@ gem "title"
 gem "tzinfo-data", platforms: [:mingw, :x64_mingw, :mswin, :jruby]
 gem "webpacker"
 gem 'ransack'
+gem 'stimulus-rails'
 
 group :development do
   gem "listen"

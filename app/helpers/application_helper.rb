@@ -6,4 +6,8 @@ module ApplicationHelper
       note
     end
   end
+
+  def line_link url, note
+    "#{url}#:~:text=#{note}"
+  end
 end

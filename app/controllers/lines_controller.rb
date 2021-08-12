@@ -4,10 +4,17 @@ class LinesController < ApplicationController
   before_action :set_line, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
+  def autocomplete
+    params[:q] = {"url_or_note_cont": params[:q]}
+    @q = Line.ransack(params[:q])
+    @search_result = @q.result.last(10).pluck(:note, :url)
+    render layout: false
+  end
+
   # GET /lines
   def index
     @q = Line.ransack(params[:q])
-    @lines = @q.result(distinct: true).order('updated_at DESC')
+    @lines = @q.result(distinct: true)
     respond_to do |format|
       format.html
       format.json { json_response(@lines)}

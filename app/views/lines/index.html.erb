@@ -1,8 +1,15 @@
+<div class="mt-4 sm:flex sm:max-w-md">
+<div data-controller="autocomplete" data-autocomplete-url-value="/autocomplete_lines">
 <%= search_form_for @q do |f| %>
   <%# f.label :url_or_note_cont %>
-  <%= f.search_field :url_or_note_cont %>
+  <%= f.search_field :url_or_note_cont, 'data-autocomplete-target': "input" %>
+  <ul data-autocomplete-target="results"></ul>
   <%# f.submit %>
 <% end %>
+</div>
+</div>
+
+
 <p id="notice"><%= notice %></p>
 <!--
 <h1>Lines</h1>
