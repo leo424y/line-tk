@@ -25,4 +25,6 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }
   config.action_mailer.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))
   config.force_ssl = true
+  config.staccato.tracker_id = 'G-DLLEW4WHEK'
+  # config.staccato.hostname = 'domain.com' # optional, but recommended
 end
