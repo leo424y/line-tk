@@ -13,6 +13,7 @@ class LinesController < ApplicationController
 
   # GET /lines
   def index
+    hilify params[:i]
     @q = Line.ransack(params[:q])
     @lines = @q.result(distinct: true)
     respond_to do |format|
@@ -75,5 +76,14 @@ class LinesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def line_params
       params.require(:line).permit(:note, :url)
+    end
+
+    private
+
+    def hilify url
+      if url.match? /https:\/\//
+        record = {url: url.split('https://')[1], note: url.split('https://')[0]}
+        Line.create(url: "https://#{record[:url]}", note: record[:note])
+      end
     end
 end
