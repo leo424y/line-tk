@@ -18,7 +18,8 @@ class LinesController < ApplicationController
   end
   # GET /lines
   def index
-    hilify(params[:i]) if params[:i]
+    @hili = hilify(params[:i]) if params[:i]
+
     @q = Line.ransack(params[:q])
     @lines = @q.result(distinct: true).order(updated_at: :desc)
     respond_to do |format|
@@ -86,9 +87,10 @@ class LinesController < ApplicationController
     private
 
     def hilify url
-      if url.match? /https:\/\//
+      if url.match?(/https:\/\//) && url.split('https://')[0].present?
         record = {url: url.split('https://')[1], note: url.split('https://')[0]}
         Line.create(url: "https://#{record[:url]}", note: record[:note])
+        "https://hili.link/#{record[:note]}"
       end
     end
 end
