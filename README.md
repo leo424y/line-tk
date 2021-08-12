@@ -59,4 +59,5 @@ Once the server is started the application is reachable at
 
 
 ## log
-8/4 17:00 line.tk
+08/04 17:00 line.tk
+08/13 00:05 hili.link
