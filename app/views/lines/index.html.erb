@@ -17,9 +17,10 @@
   </tbody>
 </table>
 <% else %>
-'Wrong url: please do "https://hili.link?i=YOURNOTE.https://YOURURL"'
+'Wrong url: please do "https://hili.link?i=YOURNOTE https://YOURURL.TO.NOTE"'
 <% end %>
 <% else %>
+<p>Creat your own hili.link by visit <code>https://hili.link?i=YOURNOTE https://YOURURL.TO.NOTE</code></p>
 <div class="mt-4 sm:flex sm:max-w-md">
   <div data-controller="autocomplete" data-autocomplete-url-value="/autocomplete_lines">
     <%= search_form_for @q do |f| %>
