@@ -13,7 +13,7 @@ class LinesController < ApplicationController
 
   # GET /lines
   def index
-    hilify params[:i]
+    hilify(params[:i]) if params[:i]
     @q = Line.ransack(params[:q])
     @lines = @q.result(distinct: true)
     respond_to do |format|
