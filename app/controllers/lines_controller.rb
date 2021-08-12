@@ -7,7 +7,7 @@ class LinesController < ApplicationController
   def autocomplete
     params[:q] = {"url_or_note_cont": params[:q]}
     @q = Line.ransack(params[:q])
-    @search_result = @q.result.last(10).pluck(:note, :url)
+    @search_result = @q.result.order(updated_at: :desc).pluck(:note, :url)
     render layout: false
   end
 
@@ -15,7 +15,7 @@ class LinesController < ApplicationController
   def index
     hilify(params[:i]) if params[:i]
     @q = Line.ransack(params[:q])
-    @lines = @q.result(distinct: true)
+    @lines = @q.result(distinct: true).order(updated_at: :desc)
     respond_to do |format|
       format.html
       format.json { json_response(@lines)}
