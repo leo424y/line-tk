@@ -14,7 +14,11 @@ class LinesController < ApplicationController
   def lihi
     params[:q] = {"note_cont": params[:lihi]}
     @q = Line.ransack(params[:q]).result.order(Arel.sql('RANDOM()')).first
-    redirect_to "#{@q.url}#:~:text=#{@q.note}"
+    if @q
+      redirect_to "#{@q.url}#:~:text=#{@q.note}"
+    else
+      redirect_to :root, notice: 'No result. How about check other hilies'
+    end
   end
   # GET /lines
   def index
