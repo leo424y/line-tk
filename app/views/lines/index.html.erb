@@ -1,8 +1,14 @@
+<%= search_form_for @q do |f| %>
+  <%# f.label :url_or_note_cont %>
+  <%= f.search_field :url_or_note_cont %>
+  <%# f.submit %>
+<% end %>
 <p id="notice"><%= notice %></p>
-
+<!--
 <h1>Lines</h1>
-
+-->
 <table>
+<!--
   <thead>
     <tr>
       <th>link-to-text</th>
@@ -11,16 +17,19 @@
       <th>Note</th>
     </tr>
   </thead>
-
+-->
   <tbody>
     <% @lines.each do |line| %>
       <tr>
-        <td><%= link_to 'link2text', "#{line.url}#:~:text=#{line.note}", target: '_blank' %></td>
+        <td><%= link_to notify(line.note), "#{line.url}#:~:text=#{line.note}", target: '_blank' %></td>
+<!--
         <td><%= link_to 'Show', line %></td>
         <td><%= link_to 'Edit', edit_line_path(line) %></td>
         <td><%= link_to 'Destroy', line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= line.url %></td>
-        <td><%= line.note %></td>
+        <td><%= notify line.note %></td>
+-->
+
       </tr>
     <% end %>
   </tbody>

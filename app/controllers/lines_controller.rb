@@ -1,10 +1,13 @@
 class LinesController < ApplicationController
+  require 'custom'
+
   before_action :set_line, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
   # GET /lines
   def index
-    @lines = Line.all.order('updated_at DESC')
+    @q = Line.ransack(params[:q])
+    @lines = @q.result(distinct: true).order('updated_at DESC')
     respond_to do |format|
       format.html
       format.json { json_response(@lines)}

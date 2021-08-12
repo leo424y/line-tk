@@ -23,6 +23,7 @@ gem "sprockets", "< 4"
 gem "title"
 gem "tzinfo-data", platforms: [:mingw, :x64_mingw, :mswin, :jruby]
 gem "webpacker"
+gem 'ransack'
 
 group :development do
   gem "listen"
