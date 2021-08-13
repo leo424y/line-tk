@@ -58,7 +58,7 @@
     <% @lines.each do |line| %>
     <tr>
       <td>
-        <%= link_to notify(line.note), "#{line.url}#:~:text=#{line.note}", target: '_blank', style: "text-decoration:none; color:gray" %>
+        <%= link_to notify(line.note), "#{line.url}#:~:text=#{line.note}", target: '_blank', style: "text-decoration:none; color:##{Random.bytes(3).unpack1('H*')}" %>
       </td>
 <!--
       <td><%= link_to 'Show', line %></td>
