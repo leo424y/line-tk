@@ -2,8 +2,8 @@
 
 <% if params[:i] %>
 <% if @hili.present? %>
-<%= link_to @hili, @hili %>
-<button onclick="copyToClipboard('<%= @hili %>')">copy</button>
+<%= link_to @hili[:note], @hili[:full_url] %>
+<button onclick="copyToClipboard('<%= @hili[:full_url] %>')">copy</button>
 <p>random redirect to links:</p>
 <table>
   <tbody>

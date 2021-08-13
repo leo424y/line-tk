@@ -24,7 +24,7 @@ class LinesController < ApplicationController
   def index
     if params[:i]
       @hili = hilify(params[:i])
-      params[:q] = {"note_cont": params[:i].split('https://')[0]}
+      params[:q] = {"note_cont": @hili[:note]}
     end
 
     @q = Line.ransack(params[:q])
@@ -93,11 +93,13 @@ class LinesController < ApplicationController
 
     private
 
-    def hilify url
-      if url.match?(/https:\/\//) && url.split('https://')[0].present?
-        record = {url: url.split('https://')[1], note: url.split('https://')[0]}
+    def hilify hili
+      if hili.match?(/https:\/\//) && hili.split('https://')[0].present?
+        url = hili.split('https://')[1]
+        note = hili.split('https://')[0]
+        record = {url: url, note: note, full_url: "https://hili.link/#{note}"}
         Line.create(url: "https://#{record[:url]}", note: record[:note])
-        "https://hili.link/#{record[:note]}"
+        record
       end
     end
 end
