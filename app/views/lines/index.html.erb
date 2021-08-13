@@ -27,7 +27,7 @@
   <div data-controller="autocomplete" data-autocomplete-url-value="/autocomplete_lines">
     <%= search_form_for @q do |f| %>
     <%# f.label :url_or_note_cont %>
-    <%= f.search_field :url_or_note_cont, 'data-autocomplete-target': "input", 'placeholder': 'Find ideas for...' %>
+    <%= f.search_field :url_or_note_cont, 'data-autocomplete-target': "input", 'placeholder': 'Find or add ideas for...' %>
     <ul data-autocomplete-target="results"></ul>
     <%# f.submit %>
     <% end %>
