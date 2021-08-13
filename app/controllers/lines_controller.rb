@@ -25,14 +25,16 @@ class LinesController < ApplicationController
   end
   # GET /lines
   def index
-    if params[:i]
-      @hili = hilify(params[:i])
-      params[:q] = {"url_or_note_cont": @hili[:note]}
-    end
-
     if params[:q] && params[:q][:url_or_note_cont].present?
       @hili = hilify(params[:q][:url_or_note_cont])
       params[:q] = {"url_or_note_cont": @hili[:note]} if @hili
+    end
+
+    if params[:i]
+      @hili = hilify(params[:i])
+      p @hili
+      params[:q] = {"url_or_note_cont": @hili[:note]}
+      p params[:q]
     end
 
     @q = Line.ransack(params[:q])
