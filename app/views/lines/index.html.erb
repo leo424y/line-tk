@@ -50,21 +50,26 @@
       <th>Note</th>
     </tr>
   </thead>
+-->
+
   <tbody>
     <% @lines.each do |line| %>
     <tr>
       <td>
         <%= link_to notify(line.note), "#{line.url}#:~:text=#{line.note}", target: '_blank', style: "text-decoration:none; color:gray" %>
       </td>
-        <td><%= link_to 'Show', line %></td>
-        <td><%= link_to 'Edit', edit_line_path(line) %></td>
-        <td><%= link_to 'Destroy', line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= line.url %></td>
-        <td><%= notify line.note %></td>
-
+<!--
+      <td><%= link_to 'Show', line %></td>
+      <td><%= link_to 'Edit', edit_line_path(line) %></td>
+      <td><%= link_to 'Destroy', line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= line.url %></td>
+      <td><%= notify line.note %></td>
+-->
     </tr>
     <% end %>
   </tbody>
+<!--
+
 </table>
 
 <br>
