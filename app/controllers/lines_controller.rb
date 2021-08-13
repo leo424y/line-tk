@@ -34,6 +34,8 @@ class LinesController < ApplicationController
 
     @q = Line.ransack(params[:q])
     @lines = @q.result(distinct: true).order(updated_at: :desc)
+
+    @lines = @lines.first(42)
     respond_to do |format|
       format.html
       format.json { json_response(@lines)}
