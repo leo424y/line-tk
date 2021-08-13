@@ -10,4 +10,8 @@ module ApplicationHelper
   def line_link url, note
     "#{url}#:~:text=#{note}"
   end
+
+  def random_colors
+    "##{Random.bytes(3).unpack1('H*')}"
+  end
 end

@@ -11,7 +11,7 @@
     <tr>
       <td>
         <% hili = "#{line.url}#:~:text=#{line.note}" %>
-        <%= link_to notify(line.note), hili, target: '_blank', style: "text-decoration:none; color:gray" %>
+        <%= link_to notify(line.note), hili, target: '_blank', style: "text-decoration:none; color:#{random_colors}" %>
         <button onclick="copyToClipboard('<%= hili %>')">copy</button>
       </td>
     </tr>
@@ -58,7 +58,7 @@
     <% @lines.each do |line| %>
     <tr>
       <td>
-        <%= link_to notify(line.note), "#{line.url}#:~:text=#{line.note}", target: '_blank', style: "text-decoration:none; color:##{Random.bytes(3).unpack1('H*')}" %>
+        <%= link_to notify(line.note), "#{line.url}#:~:text=#{line.note}", target: '_blank', style: "text-decoration:none; color:#{random_colors}" %>
       </td>
 <!--
       <td><%= link_to 'Show', line %></td>
