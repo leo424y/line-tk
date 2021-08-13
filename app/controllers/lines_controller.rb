@@ -1,4 +1,7 @@
 class LinesController < ApplicationController
+  extend Limiter::Mixin
+  limit_method :index, rate: 120
+
   require 'custom'
 
   before_action :set_line, only: [:show, :edit, :update, :destroy]
