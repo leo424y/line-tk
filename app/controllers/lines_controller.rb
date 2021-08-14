@@ -109,7 +109,8 @@ class LinesController < ApplicationController
       if hili.match?(/https:\/\//) && hili.split('https://')[0].present?
         url = hili.split('https://')[1]
         note = hili.split('https://')[0]
-        record = {url: url, note: note, full_url: "https://hili.link/#{note}"}
+        record = {url: url, note: note, full_url: "https://#{request.host}/#{note}"}
+        p record
         Line.create(url: "https://#{record[:url]}", note: record[:note])
         record
       end
