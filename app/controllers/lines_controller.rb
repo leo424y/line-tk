@@ -108,12 +108,12 @@ class LinesController < ApplicationController
         if hili.match?('#:~:text=')
           url = CGI.unescape(hili.split('#:~:text=')[0])
           note = CGI.unescape(hili.split('#:~:text=')[1])
-          record = {url: url, note: note, full_url: "#{request.host}/#{note}"}
+          record = {url: url, note: note, full_url: "https://#{request.host}/#{note}"}
           Line.create(url: "#{record[:url]}", note: record[:note])
         elsif hili.split('http')[0].present?
           url = hili.split('http')[1]
           note = hili.split('http')[0]
-          record = {url: url, note: note, full_url: "http#{request.host}/#{note}"}
+          record = {url: url, note: note, full_url: "https://#{request.host}/#{note}"}
           Line.create(url: "http#{record[:url]}", note: record[:note])
         end
         record
