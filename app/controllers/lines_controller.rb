@@ -31,10 +31,23 @@ class LinesController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
+          msg = event.message['text']
+          keyword = msg.split('http')[0]
+
+          reply_text = if msg.match?(/http/) && keyword.present?
+            uri = URI("https://hili.link?i=#{CGI.escape(msg)}")
+            Net::HTTP.get_response(uri)
+
+            "https://hili.link/#{keyword}"
+          else
+            event.message['text']
+          end
+
           message = {
             type: 'text',
-            text: event.message['text']
+            text: reply_text
           }
+
           client.reply_message(event['replyToken'], message)
         end
       end
