@@ -62,3 +62,4 @@ Once the server is started the application is reachable at
 08/04 17:00 line.tk
 08/13 00:05 hili.link
 08/23 20:00 hili.link with chatbot
+08/24 07:00 rename line to link
