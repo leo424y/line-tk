@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   constraints: ->(request){ request.query_parameters["i"].present? }
 
   get '/:lihi', to: 'lines#lihi'
+
+  post '/callback', to: 'lines#callback'
 end

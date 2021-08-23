@@ -95,6 +95,7 @@ GEM
       concurrent-ruby (~> 1.0)
     launchy (2.5.0)
       addressable (~> 2.7)
+    line-bot-api (1.21.0)
     listen (3.6.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -237,6 +238,7 @@ DEPENDENCIES
   bootsnap
   formulaic
   launchy
+  line-bot-api
   listen
   pg
   pry-byebug

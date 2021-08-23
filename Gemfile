@@ -26,6 +26,7 @@ gem "webpacker"
 gem 'ransack'
 gem 'stimulus-rails'
 gem 'ruby-limiter'
+gem 'line-bot-api'
 
 group :development do
   gem "listen"
