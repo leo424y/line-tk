@@ -1,2 +1,0 @@
-class Line < ApplicationRecord
-end

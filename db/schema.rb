@@ -15,13 +15,13 @@ ActiveRecord::Schema.define(version: 2021_08_13_050423) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "lines", force: :cascade do |t|
+  create_table "links", force: :cascade do |t|
     t.string "note"
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["note"], name: "index_lines_on_note"
-    t.index ["url"], name: "index_lines_on_url"
+    t.index ["note"], name: "index_links_on_note"
+    t.index ["url"], name: "index_links_on_url"
   end
 
 end

@@ -2,17 +2,17 @@
 
 <p>
   <strong>Note:</strong>
-  <%= @line.note %>
+  <%= @link.note %>
 </p>
 
 <p>
   <strong>Url:</strong>
-  <%= @line.url %>
+  <%= @link.url %>
 </p>
 
-<%= link_to 'Edit', edit_line_path(@line) %> |
-<%= link_to 'Back', lines_path %>
-<div id="log" target='_blank'><%= "#{@line.url}#:~:text=#{CGI.escape @line.note}" %></div>
+<%= link_to 'Edit', edit_link_path(@link) %> |
+<%= link_to 'Back', links_path %>
+<div id="log" target='_blank'><%= "#{@link.url}#:~:text=#{CGI.escape @link.note}" %></div>
 <button onclick="bitly()">shorten</button>
 
 <script>

@@ -9,11 +9,11 @@
 <p>random redirect to links:</p>
 <table>
   <tbody>
-    <% @lines.each do |line| %>
+    <% @links.each do |link| %>
     <tr>
       <td>
-        <% hili = "#{line.url}#:~:text=#{line.note}" %>
-        <%= link_to notify(line.note), hili, target: '_blank', style: "text-decoration:none; color:#{random_colors}" %>
+        <% hili = "#{link.url}#:~:text=#{link.note}" %>
+        <%= link_to notify(link.note), hili, target: '_blank', style: "text-decoration:none; color:#{random_colors}" %>
         <button onclick="copyToClipboard('<%= hili %>')">copy</button>
       </td>
     </tr>
@@ -28,7 +28,7 @@
 <p>🦫 Or, input your notes with url below like: <code>YOURNOTE https://YOURURL.TO.NOTE</code> →→<button onclick="tryIt()">Try it!</button></p>
 
 <div class="mt-4 sm:flex sm:max-w-md">
-  <div data-controller="autocomplete" data-autocomplete-url-value="/autocomplete_lines">
+  <div data-controller="autocomplete" data-autocomplete-url-value="/autocomplete_links">
     <%= search_form_for @q do |f| %>
     <%= f.submit '🦫 HILI!' %>
     <%# f.label :url_or_note_cont %>
@@ -41,7 +41,7 @@
 
 <!--
 <h1>Lines</h1>
-<%= link_to '+', new_line_path, style: "text-decoration:none; color:black" %>
+<%= link_to '+', new_link_path, style: "text-decoration:none; color:black" %>
 -->
 
 <!--
@@ -57,17 +57,17 @@
 -->
 
   <tbody>
-    <% @lines.each do |line| %>
+    <% @links.each do |link| %>
     <tr>
       <td>
-        <%= link_to notify(line.note), "#{line.url}#:~:text=#{line.note}", target: '_blank', style: "text-decoration:none; color:#{random_colors}" %>
+        <%= link_to notify(link.note), "#{link.url}#:~:text=#{link.note}", target: '_blank', style: "text-decoration:none; color:#{random_colors}" %>
       </td>
 <!--
-      <td><%= link_to 'Show', line %></td>
-      <td><%= link_to 'Edit', edit_line_path(line) %></td>
-      <td><%= link_to 'Destroy', line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <td><%= line.url %></td>
-      <td><%= notify line.note %></td>
+      <td><%= link_to 'Show', link %></td>
+      <td><%= link_to 'Edit', edit_link_path(link) %></td>
+      <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link.url %></td>
+      <td><%= notify link.note %></td>
 -->
     </tr>
     <% end %>

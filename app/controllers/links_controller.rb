@@ -1,12 +1,12 @@
-class LinesController < ApplicationController
+class LinksController < ApplicationController
   extend Limiter::Mixin
   limit_method :index, rate: 120
 
   require 'custom'
-  require 'line/bot'  # gem 'line-bot-api'
+  require 'line/bot'  # gem 'link-bot-api'
 
 
-  before_action :set_line, only: [:show, :edit, :update, :destroy]
+  before_action :set_link, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
   def client
@@ -58,21 +58,21 @@ class LinesController < ApplicationController
 
   def autocomplete
     params[:q] = {"url_or_note_cont": params[:q]}
-    @q = Line.ransack(params[:q])
+    @q = Link.ransack(params[:q])
     @search_result = @q.result.order(updated_at: :desc).pluck(:note, :url)
     render layout: false
   end
 
   def lihi
     params[:q] = {"note_cont": params[:lihi]}
-    @q = Line.ransack(params[:q]).result.order(Arel.sql('RANDOM()')).first
+    @q = Link.ransack(params[:q]).result.order(Arel.sql('RANDOM()')).first
     if @q
       redirect_to "#{@q.url}#:~:text=#{@q.note}"
     else
       redirect_to :root, notice: 'No result. How about check other hilies'
     end
   end
-  # GET /lines
+  # GET /links
   def index
     if params[:q] && params[:q][:url_or_note_cont].present?
       @hili = hilify(params[:q][:url_or_note_cont])
@@ -84,70 +84,70 @@ class LinesController < ApplicationController
       params[:q] = {"url_or_note_cont": @hili[:note]}
     end
 
-    @q = Line.ransack(params[:q])
-    @lines = @q.result(distinct: true).order(updated_at: :desc)
+    @q = Link.ransack(params[:q])
+    @links = @q.result(distinct: true).order(updated_at: :desc)
 
-    @lines = @lines.first(42)
+    @links = @links.first(42)
     respond_to do |format|
       format.html
-      format.json { json_response(@lines)}
+      format.json { json_response(@links)}
     end
   end
 
-  # GET /lines/1
+  # GET /links/1
   def show
     respond_to do |format|
       format.html
-      format.json { json_response(@line) }
+      format.json { json_response(@link) }
     end
   end
 
-  # GET /lines/new
+  # GET /links/new
   def new
-    @line = Line.new
+    @link = Link.new
   end
 
-  # GET /lines/1/edit
+  # GET /links/1/edit
   def edit
   end
 
-  # POST /lines
+  # POST /links
   def create
-    @line = Line.new(line_params)
-    @line.url = CGI.unescape(params[:line][:url])
-    @line.note = CGI.unescape(params[:line][:note])
+    @link = Link.new(link_params)
+    @link.url = CGI.unescape(params[:link][:url])
+    @link.note = CGI.unescape(params[:link][:note])
 
-    if @line.save
-      redirect_to @line, notice: 'Line was successfully created.'
+    if @link.save
+      redirect_to @link, notice: 'Link was successfully created.'
     else
       render :new
     end
   end
 
-  # PATCH/PUT /lines/1
+  # PATCH/PUT /links/1
   def update
-    if @line.update(line_params)
-      redirect_to @line, notice: 'Line was successfully updated.'
+    if @link.update(link_params)
+      redirect_to @link, notice: 'Link was successfully updated.'
     else
       render :edit
     end
   end
 
-  # DELETE /lines/1
+  # DELETE /links/1
   def destroy
-    @line.destroy
-    redirect_to lines_url, notice: 'Line was successfully destroyed.'
+    @link.destroy
+    redirect_to links_url, notice: 'Link was successfully destroyed.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_line
-      @line = Line.find(params[:id])
+    def set_link
+      @link = Link.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
-    def line_params
-      params.require(:line).permit(:note, :url)
+    def link_params
+      params.require(:link).permit(:note, :url)
     end
 
     private
@@ -158,12 +158,12 @@ class LinesController < ApplicationController
           url = CGI.unescape(hili.split('#:~:text=')[0])
           note = CGI.unescape(hili.split('#:~:text=')[1])
           record = {url: url, note: note, full_url: "https://#{request.host}/#{note}"}
-          Line.create(url: "#{record[:url]}", note: record[:note])
+          Link.create(url: "#{record[:url]}", note: record[:note])
         elsif hili.split('http')[0].present?
           url = hili.split('http')[1]
           note = hili.split('http')[0]
           record = {url: url, note: note, full_url: "https://#{request.host}/#{note}"}
-          Line.create(url: "http#{record[:url]}", note: record[:note])
+          Link.create(url: "http#{record[:url]}", note: record[:note])
         end
         record
       end

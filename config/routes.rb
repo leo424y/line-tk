@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  resources :lines
-  root 'lines#index'
-  get :autocomplete_lines, to: 'lines#autocomplete'
+  resources :links
+  root 'links#index'
+  get :autocomplete_links, to: 'links#autocomplete'
 
   get '/',
-  to: 'lines#index',
+  to: 'links#index',
   constraints: ->(request){ request.query_parameters["i"].present? }
 
-  get '/:lihi', to: 'lines#lihi'
+  get '/:lihi', to: 'links#lihi'
 
-  post '/callback', to: 'lines#callback'
+  post '/callback', to: 'links#callback'
 end
