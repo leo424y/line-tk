@@ -33,7 +33,6 @@ class LinksController < ApplicationController
         when Line::Bot::Event::MessageType::Text
           msg = event.message['text']
           keyword = msg.split('http')[0]
-          keyword_url = msg.trunk(keyword)
 
           reply_text = if msg.match?(/http/) && keyword.present?
             hili_link = "https://hili.link?i=#{CGI.escape(msg)}"
