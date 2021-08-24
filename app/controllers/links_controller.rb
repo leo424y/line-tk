@@ -33,21 +33,33 @@ class LinksController < ApplicationController
         when Line::Bot::Event::MessageType::Text
           msg = event.message['text']
           keyword = msg.split('http')[0]
+          keyword_url = msg.trunk(keyword)
 
           reply_text = if msg.match?(/http/) && keyword.present?
-            uri = URI("https://hili.link?i=#{CGI.escape(msg)}")
+            hili_link = "https://hili.link?i=#{CGI.escape(msg)}"
+            uri = URI(hili_link)
+
             Net::HTTP.get_response(uri)
 
             "https://hili.link/#{keyword}"
           else
-            event.message['text']
+            "https://hili.link/#{event.message['text']}"
           end
+
+          image_uri = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=#{reply_text}"
 
           message = {
             type: 'text',
             text: reply_text
           }
 
+          client.reply_message(event['replyToken'], message)
+
+          message = {
+            type: 'image',
+            originalContentUrl: image_uri,
+            previewImageUrl: image_uri,
+          }
           client.reply_message(event['replyToken'], message)
         end
       end
