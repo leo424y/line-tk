@@ -57,8 +57,7 @@ class LinksController < ApplicationController
             originalContentUrl: image_uri,
             previewImageUrl: image_uri,
           }
-          client.reply_message(event['replyToken'], message)
-          client.reply_message(event['replyToken'], message2)
+          client.reply_message(event['replyToken'], [message, message2])
         end
       end
     end
