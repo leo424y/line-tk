@@ -40,9 +40,9 @@ class LinksController < ApplicationController
 
             Net::HTTP.get_response(uri)
 
-            "https://hili.link/#{keyword}"
+            "https://hili.link/#{CGI.unescape(keyword)}"
           else
-            "https://hili.link/#{event.message['text']}"
+            "https://hili.link/#{CGI.unescape(event.message['text'])}"
           end
 
           image_uri = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=#{CGI.escape(reply_text)}&format=jpg"
