@@ -45,7 +45,7 @@ class LinksController < ApplicationController
             "https://hili.link/#{event.message['text']}"
           end
 
-          image_uri = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=#{reply_text}&format=jpg"
+          image_uri = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=#{CGI.escape(reply_text)}&format=jpg"
 
           message = {
             type: 'text',
