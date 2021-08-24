@@ -32,32 +32,32 @@ class LinksController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           msg = event.message['text']
-          keyword = msg.split('http')[0] || '🦫hili'
+          note = hilify(msg)[:note]
 
-          reply_text = if msg.match?(/http/) && keyword.present?
+          reply_text = if msg.match?(/http/)
             hili_link = "https://hili.link?i=#{CGI.escape(msg)}"
             uri = URI(hili_link)
-
             Net::HTTP.get_response(uri)
 
-            "https://hili.link/#{CGI.unescape(keyword)}"
+            "https://hili.link/#{CGI.unescape(note)}"
           else
             "https://hili.link/#{CGI.unescape(event.message['text'])}"
           end
 
           image_uri = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=#{CGI.escape(reply_text)}&format=jpg"
 
-          message = {
+          message_short_link = {
             type: 'text',
             text: reply_text
           }
 
-          message2 = {
+          message_qr = {
             type: 'image',
             originalContentUrl: image_uri,
             previewImageUrl: image_uri,
           }
-          client.reply_message(event['replyToken'], [message, message2])
+
+          client.reply_message(event['replyToken'], [message_short_link, message_qr])
         end
       end
     end
@@ -168,9 +168,9 @@ class LinksController < ApplicationController
           note = CGI.unescape(hili.split('#:~:text=')[1])
           record = {url: url, note: note, full_url: "https://#{request.host}/#{note}"}
           Link.create(url: "#{record[:url]}", note: record[:note])
-        elsif hili.split('http')[0].present?
+        else
           url = hili.split('http')[1]
-          note = hili.split('http')[0]
+          note = hili.split('http')[0].present? ? hili.split('http')[0] : '🦫hili'
           record = {url: url, note: note, full_url: "https://#{request.host}/#{note}"}
           Link.create(url: "http#{record[:url]}", note: record[:note])
         end
