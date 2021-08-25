@@ -1,9 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <%= link_to '💦 HILI.LINK 💧', root_path, style: "text-decoration:none;" %>
+🦫 與海狸們集結四散的資訊樹枝，一起搭建我們的知識水庫。
 <%= link_to '👉 Need help?', 'https://hackmd.io/@flab/hili', target: '_blank', style: "text-decoration:none;" %>
-<p>海狸縮址有 chatbot 囉，用來搜集大家喜歡的資源，歡迎大家把它用成喜歡的樣子→ <a href='https://line.me/R/ti/p/@460kalte'>https://line.me/R/ti/p/@460kalte<a> 原始碼開放歡迎到共筆討論 :)</p>
-<%= image_tag 'line' %>
+<p>海狸縮址有 chatbot 囉，歡迎<a href='https://line.me/R/ti/p/@460kalte'>點此加入</a>。本服務原始碼開放，歡迎到<a href='https://hackmd.io/@flab/hili/edit'>共筆</a>討論</p>
+<img src='https://imgur.com/E1b6PDo.jpg'></img>
 <% if params[:i] %>
 <% if @hili.present? %>
 <%= link_to @hili[:note], @hili[:full_url] %>
@@ -88,7 +89,7 @@
 
 <script type="text/javascript">
     function tryIt() {
-      document.getElementById("hiliit").value= '🦫 Note links in 1s! https://hili.link'
+      document.getElementById("hiliit").value= '🦫 Note links in 1s!https://hili.link'
     }
 
     function copyToClipboard(message) {
