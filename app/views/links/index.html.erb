@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
+
 <%= link_to '💦 HILI.LINK 💧', root_path, style: "text-decoration:none;" %>
 <%= link_to '👉 Need help?', 'https://hackmd.io/@flab/hili', target: '_blank', style: "text-decoration:none;" %>
-
+<p>海狸縮址有 chatbot 囉，用來搜集大家喜歡的資源，歡迎大家把它用成喜歡的樣子→ <a href='https://line.me/R/ti/p/@460kalte'>https://line.me/R/ti/p/@460kalte<a> 原始碼開放歡迎到共筆討論 :)</p>
+<%= image_tag 'line' %>
 <% if params[:i] %>
 <% if @hili.present? %>
 <%= link_to @hili[:note], @hili[:full_url] %>
