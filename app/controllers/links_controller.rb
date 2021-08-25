@@ -35,9 +35,9 @@ class LinksController < ApplicationController
           note = hilify(msg)[:note]
 
           reply_text = if msg.match?(/http/)
-            hili_link = "https://hili.link?i=#{CGI.escape(msg)}"
-            uri = URI(hili_link)
-            Net::HTTP.get_response(uri)
+            # hili_link = "https://hili.link?i=#{CGI.escape(msg)}"
+            # uri = URI(hili_link)
+            # Net::HTTP.get_response(uri)
 
             "https://hili.link/#{CGI.unescape(note)}"
           else
