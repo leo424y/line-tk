@@ -11,7 +11,7 @@ class String
   private
 
   def randomoji
-    emojis.sample.downcase
+    emojis.sample.downcase.split(//).rotate(1).join
   end
 
   def emojis
