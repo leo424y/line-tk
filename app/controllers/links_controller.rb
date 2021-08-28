@@ -173,13 +173,13 @@ class LinksController < ApplicationController
         else
           url = hili.split('http')[1]
           note = hili.split('http')[0].present? ? hili.split('http')[0] : ''.add_emoji
-          record = {url: url, note: note, full_url: "https://#{request.host}/#{note}"}
-          Link.create(url: "http#{record[:url]}", note: record[:note])
+          record = {url: "http#{url}", note: note, full_url: "https://#{request.host}/#{note}"}
+          Link.create(url: "#{record[:url]}", note: record[:note])
         end
         record
       else
         note = hili
-        record = {url: "https://#{request.host}/#{note}", note: hili, full_url: "https://#{request.host}/#{note}"}
+        record = {note: hili, full_url: "https://#{request.host}/#{note}"}
       end
     end
 end
