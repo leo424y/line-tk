@@ -38,8 +38,8 @@
 <div>
   <div data-controller="autocomplete" data-autocomplete-url-value="/autocomplete_links">
     <%= search_form_for @q do |f| %>
-    <%= f.search_field :url_or_note_cont, 'data-autocomplete-target': "input", required: true, class: "block w-full py-3 text-base rounded-md placeholder-gray-500 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:flex-1 border-gray-300", 'placeholder': 'Find or add ideas for...', id: 'hiliit' %>
-    <%= f.submit '🦫 HILI!', class: "my-1 w-full flex items-center justify-center py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10" %>
+    <%= f.search_field :url_or_note_cont, 'data-autocomplete-target': "input", required: true, class: "block border w-full pl-5 py-3 text-base rounded-md placeholder-gray-500 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:flex-1 border-gray-300", 'placeholder': '查詢或製作短網址…', id: 'hiliit' %>
+    <%= f.submit '🦫 🌳  HILI! 🌳 🦫', class: "my-1 w-full flex items-center justify-center py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10" %>
     <div class="my-1 mt-3 rounded-md shadow sm:mt-0">
       <a onclick="tryIt('🦫 輸入你接著網址在這裡後在前輸入易聯想的字並點擊送出https://hili.link')" href="#"
         class="w-full flex items-center justify-center py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg ">
@@ -92,10 +92,15 @@
       </dt>
       <dd class="mt-2 ml-16 text-base text-gray-500">
         <p>
-          🦫 在網址列入<code class='underline'>https://hili.link?i=要標記的字https://你的連結</code>
+          🦫 在網址列輸入
+          <code class='underline'>https://hili.link?i=要標記的字https://你的連結</code>
         </p>
         <p>
-          🦫 或直接對著 <a class='underline' href='https://line.me/R/ti/p/@460kalte'>Chatbot</a> 送出字也可建立連結
+          🦫 或在搜尋框輸入
+          <code class='underline'>要標記的字https://你的連結</code>
+        </p>
+        <p>
+          🦫 或直接對著 <a class='underline' href='https://line.me/R/ti/p/@460kalte'>Hili Chatbot</a> 送出上面標記的連結也可以得到短網址
         </p>
       </dd>
     </div>
@@ -114,10 +119,14 @@
       </dt>
       <dd class="mt-2 ml-16 text-base text-gray-500">
         <p>
-          🦫 在網址列入就能查詢想查的字。例：<code class='underline'>https://hili.link/易聯想的字</code>
+          🦫 在網址列入就能查詢想查的字。例如：<code class='underline'>https://hili.link/易聯想的字</code>
         </p>
         <p>
-          🦫 或直接對著 <a class='underline' href='https://line.me/R/ti/p/@460kalte'>Chatbot</a> 送出字也可取得連結
+          🦫 或在搜尋框輸入
+          <code class='underline'>要查的字</code>
+        </p>
+        <p>
+          🦫 或直接對著 <a class='underline' href='https://line.me/R/ti/p/@460kalte'>Hili Chatbot</a> 送出字也可得到連結
         </p>
       </dd>
     </div>
