@@ -169,7 +169,7 @@
     try {
       var successful = document.execCommand('copy');
       var msg = successful ? 'successful' : 'unsuccessful';
-      alert(textArea.value + ' was copied')
+      alert(textArea.value + ' 已複製到剪貼簿！可以到處貼上與分享囉')
       //alert('Copying text command was ' + msg);
     } catch (err) {
       alert('Unable to copy value , error : ' + err.message);
