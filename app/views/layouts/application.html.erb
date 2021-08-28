@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLLEW4WHEK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
     gtag('js', new Date());
 
     gtag('config', 'G-DLLEW4WHEK');
@@ -18,13 +22,105 @@
     https://github.com/calebthompson/title#usage
   %>
   <title><%= title %></title>
+
+  <%= stylesheet_link_tag "inter-font", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
   <%= stylesheet_link_tag :application, media: "all" %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
   <%= render "flashes" -%>
-  <%= yield %>
-  <%= render "javascript" %>
-  <%= render "css_overrides" %>
+
+  <!-- This example requires Tailwind CSS v2.0+ -->
+  <div class="relative bg-gray-50">
+    <div class="relative bg-white shadow">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex justify-between items-center py-6 md:justify-start md:space-x-10">
+          <div class="flex justify-start lg:w-0 lg:flex-1">
+            <a href="#">
+              <span class="sr-only">HILI.LINK</span>
+              <img class="h-8 w-auto"
+                src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/beaver_1f9ab.png"
+                alt="Hili">
+            </a>
+          </div>
+          <nav class="md:flex space-x-10">
+          <!--
+            <a href="#" target='_blank' class="text-base font-medium text-gray-500 hover:text-gray-900">
+              發現連結
+            </a>
+            -->
+            <a href="https://hackmd.io/@flab/hili/edit" target='_blank'
+              class="text-base font-medium text-gray-500 hover:text-gray-900">
+              開發共筆
+            </a>
+          </nav>
+          <!--
+        <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+          <a href="#" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+            Sign in
+          </a>
+          <a href="#" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+            Sign up
+          </a>
+        </div>
+        -->
+        </div>
+      </div>
+
+      <main class="lg:relative">
+        <div class="mx-auto max-w-7xl w-full pt-16 pb-20 text-center lg:py-48 lg:text-left">
+          <div class="px-4 lg:w-1/2 sm:px-8 xl:pr-16">
+            <h1
+              class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+              <span class="block xl:inline">喔不！又忘記那個連結？</span>
+              <span class="block text-indigo-600 xl:inline">用 HILI.LINK 一秒找回好事</span>
+            </h1>
+            <p class="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
+              與海狸們集結四散的資訊樹枝，一起搭建我們的知識水庫。
+            </p>
+            <p class="mt-3 text-sm text-gray-500">
+              8/28 更新：海狸縮址有 Chatbot 囉，歡迎
+              <a class='underline' href='https://line.me/R/ti/p/@460kalte'>點此加入</a>。
+            </p>
+            <p class="mt-3 text-sm text-gray-500 mb-3">
+              本服務原始碼開放，歡迎到<a class='underline' href='https://hackmd.io/@flab/hili/edit'>共筆</a>討論
+            </p>
+
+            <!--
+            <div class="mt-10 sm:flex sm:justify-center lg:justify-start">
+              <div class="rounded-md shadow">
+                <a href="#"
+                  class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                  Get started
+                </a>
+              </div>
+              <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
+                <a href="#"
+                  class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
+                  Live demo
+                </a>
+              </div>
+            </div>
+            -->
+            <%= yield %>
+          </div>
+        </div>
+
+        <div class="relative w-full h-64 sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:h-full">
+          <img class="absolute inset-0 w-full h-full object-cover"
+            src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80"
+            alt="">
+        </div>
+      </main>
+    </div>
+
+
+<%= render "layouts/footer" %>
+
+    <%= render "javascript" %>
+    <%= render "css_overrides" %>
 </body>
+
 </html>

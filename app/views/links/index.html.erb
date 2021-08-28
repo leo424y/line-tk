@@ -1,10 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to '💦 HILI.LINK 💧', root_path, style: "text-decoration:none;" %>
-🦫 與海狸們集結四散的資訊樹枝，一起搭建我們的知識水庫。
-<%= link_to '👉 Need help?', 'https://hackmd.io/@flab/hili', target: '_blank', style: "text-decoration:none;" %>
-<p>海狸縮址有 chatbot 囉，歡迎<a href='https://line.me/R/ti/p/@460kalte'>點此加入</a>。本服務原始碼開放，歡迎到<a href='https://hackmd.io/@flab/hili/edit'>共筆</a>討論</p>
-<img src='https://imgur.com/E1b6PDo.jpg'></img>
 <% if params[:i] %>
 <% if @hili.present? %>
 <%= link_to @hili[:note], @hili[:full_url] %>
@@ -27,90 +22,138 @@
 🦫 Wrong url: please do "https://hili.link?i=YOURNOTE https://YOURURL.TO.NOTE"
 <% end %>
 <% else %>
-<p>🦫 Creat your own hili.link by visit <code>https://hili.link?i=YOURNOTE https://YOURURL.TO.NOTE</code></p>
-<p>🦫 Or, input your notes with url below like: <code>YOURNOTE https://YOURURL.TO.NOTE</code> →→<button onclick="tryIt()">Try it!</button></p>
 
-<div class="mt-4 sm:flex sm:max-w-md">
+<div>
   <div data-controller="autocomplete" data-autocomplete-url-value="/autocomplete_links">
     <%= search_form_for @q do |f| %>
-    <%= f.submit '🦫 HILI!' %>
+    <%= f.search_field :url_or_note_cont, 'data-autocomplete-target': "input", class: "block w-full py-3 text-base rounded-md placeholder-gray-500 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:flex-1 border-gray-300", 'placeholder': 'Find or add ideas for...', id: 'hiliit' %>
+    <%= f.submit '🦫 HILI!', class: "my-1 w-full flex items-center justify-center py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10" %>
+    <div class="my-1 mt-3 rounded-md shadow sm:mt-0">
+      <a onclick="tryIt('🦫 輸入你接著網址在這裡後在前輸入易聯想的字並點擊送出https://hili.link')" href="#"
+        class="w-full flex items-center justify-center py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg ">
+        製作範例
+      </a>
+    </div>
+    <div class="my-1 mt-3 rounded-md shadow sm:mt-0">
+      <a onclick="tryIt('輸入易聯想的字並點擊送出')" href="#"
+        class="w-full flex items-center justify-center py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg ">
+        搜尋範例
+      </a>
+    </div>
     <%# f.label :url_or_note_cont %>
-    <%= f.search_field :url_or_note_cont, 'data-autocomplete-target': "input", 'placeholder': 'Find or add ideas for...', id: 'hiliit' %>
     <ul data-autocomplete-target="results"></ul>
     <% end %>
   </div>
 </div>
 
-
-<!--
-<h1>Lines</h1>
-<%= link_to '+', new_link_path, style: "text-decoration:none; color:black" %>
--->
-
-<!--
-<table>
-  <thead>
-    <tr>
-      <th>link-to-text</th>
-      <th colspan="3"></th>
-      <th>Url</th>
-      <th>Note</th>
-    </tr>
-  </thead>
--->
-
-  <tbody>
-    <% @links.each do |link| %>
-    <tr>
-      <td>
-        <%= link_to notify(link.note), "#{link.url}#:~:text=#{link.note}", target: '_blank', style: "text-decoration:none; color:#{random_colors}" %>
-      </td>
-<!--
-      <td><%= link_to 'Show', link %></td>
-      <td><%= link_to 'Edit', edit_link_path(link) %></td>
-      <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <td><%= link.url %></td>
-      <td><%= notify link.note %></td>
--->
-    </tr>
-    <% end %>
-  </tbody>
-<!--
-
-</table>
-
-<br>
--->
+<tbody>
+  <% @links.each do |link| %>
+  <tr>
+    <td>
+      <%= link_to notify(link.note), "#{link.url}#:~:text=#{link.note}", target: '_blank', style: "text-decoration:none; color:#{random_colors}" %>
+    </td>
+  </tr>
+  <% end %>
+</tbody>
 
 
+<div class="relative py-10">
+  <h3 class="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">
+    幫助金魚腦快速記下好用連結
+  </h3>
+  <p class="mt-3 text-lg text-gray-500">
+    只需要一個步驟，就能快速完成記錄與查詢
+  </p>
+
+  <dl class="mt-10 space-y-10">
+    <div class="relative">
+      <dt>
+        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+          <!-- Heroicon name: outline/globe-alt -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+          </svg>
+        </div>
+        <p class="ml-16 text-lg leading-6 font-medium text-gray-900">製作連結</p>
+      </dt>
+      <dd class="mt-2 ml-16 text-base text-gray-500">
+      <p>
+        🦫 在網址列入<code class='underline'>https://hili.link?i=要標記的字https://你的連結</code>
+      </p>
+      <p>
+        🦫 或直接對著 <a class='underline' href='https://line.me/R/ti/p/@460kalte'>Chatbot</a> 送出字也可建立連結
+      </p>
+      </dd>
+    </div>
+
+    <div class="relative">
+      <dt>
+        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+          <!-- Heroicon name: outline/scale -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+          </svg>
+        </div>
+        <p class="ml-16 text-lg leading-6 font-medium text-gray-900">取得連結</p>
+      </dt>
+      <dd class="mt-2 ml-16 text-base text-gray-500">
+      <p>
+        🦫 在網址列入就能查詢想查的字。例：<code class='underline'>https://hili.link/易聯想的字</code>
+      </p>
+      <p>
+        🦫 或直接對著 <a class='underline' href='https://line.me/R/ti/p/@460kalte'>Chatbot</a> 送出字也可取得連結
+      </p>
+      </dd>
+    </div>
+
+    <div class="relative">
+      <dt>
+        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+          <!-- Heroicon name: outline/lightning-bolt -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <p class="ml-16 text-lg leading-6 font-medium text-gray-900">發現更多連結</p>
+      </dt>
+      <dd class="mt-2 ml-16 text-base text-gray-500">
+        直接輸入想找的資訊，看看有什麼最新連結！
+      </dd>
+    </div>
+  </dl>
+</div>
 <% end %>
 
 
 
 <script type="text/javascript">
-    function tryIt() {
-      document.getElementById("hiliit").value= '🦫 Note links in 1s!https://hili.link'
+  function tryIt(e) {
+    document.getElementById("hiliit").value = e
+  }
+
+  function copyToClipboard(message) {
+    var textArea = document.createElement("textarea");
+    textArea.value = message;
+    textArea.style.opacity = "0";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'successful' : 'unsuccessful';
+      alert(textArea.value + ' was copied')
+      //alert('Copying text command was ' + msg);
+    } catch (err) {
+      alert('Unable to copy value , error : ' + err.message);
     }
 
-    function copyToClipboard(message) {
-        var textArea = document.createElement("textarea");
-        textArea.value = message;
-        textArea.style.opacity = "0"; 
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-
-
-        try {
-            var successful = document.execCommand('copy');
-            var msg = successful ? 'successful' : 'unsuccessful';
-            alert(textArea.value+' was copied')
-            //alert('Copying text command was ' + msg);
-        } catch (err) {
-            alert('Unable to copy value , error : ' + err.message);
-        }
-
-        document.body.removeChild(textArea);
-    }
-
+    document.body.removeChild(textArea);
+  }
 </script>
