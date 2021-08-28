@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/dorianmariefr/tailwindcss-rails.git
+  revision: 609e9a65a0b00b9d600a20103cb8f34f05e7ed10
+  branch: minimal
+  specs:
+    tailwindcss-rails (0.4.2)
+      rails (>= 6.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -199,8 +207,6 @@ GEM
     suspenders (1.55.1)
       bitters (>= 2.0.4)
       rails (~> 6.0.0)
-    tailwindcss-rails (0.4.3)
-      rails (>= 6.0.0)
     thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -257,7 +263,7 @@ DEPENDENCIES
   sprockets (< 4)
   stimulus-rails
   suspenders
-  tailwindcss-rails (~> 0.4.3)
+  tailwindcss-rails!
   timecop
   title
   tzinfo-data

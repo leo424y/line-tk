@@ -50,4 +50,4 @@ gem "suspenders", group: [:development, :test]
 
 gem 'rack-mini-profiler', require: false
 
-gem "tailwindcss-rails", "~> 0.4.3"
+gem "tailwindcss-rails", github: "dorianmariefr/tailwindcss-rails", branch: "minimal"
