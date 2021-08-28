@@ -83,7 +83,9 @@ class LinksController < ApplicationController
   end
   # GET /links
   def index
+
     if params[:q] && params[:q][:url_or_note_cont].present?
+
       @hili = hilify(params[:q][:url_or_note_cont])
       params[:q] = {"url_or_note_cont": @hili[:note]} if @hili
     end
@@ -175,6 +177,9 @@ class LinksController < ApplicationController
           Link.create(url: "http#{record[:url]}", note: record[:note])
         end
         record
+      else
+        note = hili
+        record = {url: "https://#{request.host}/#{note}", note: hili, full_url: "https://#{request.host}/#{note}"}
       end
     end
 end
