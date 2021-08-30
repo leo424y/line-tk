@@ -26,8 +26,13 @@
     class="w-full flex items-center justify-center py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 md:py-4 md:text-lg ">
     Copy</a>
 </div>
+<div class="my-1 mt-3 rounded-md shadow sm:mt-0">
+  <a href="#" onclick="copyToClipboard('<%= "[#{@hili[:note]}](#{@hili[:full_url]})" %>')"
+    class="w-full flex items-center justify-center py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 md:py-4 md:text-lg ">
+    Copy as Markdown</a>
+</div>
 <p>
-<%= @hili[:note] %> 這個字的相關連結：
+<%= @hili[:note] %> 這個字的相關連結喔：
 </p>
 <% @links.each do |link| %>
 <% hili = "#{link.url}#:~:text=#{link.note}" %>
@@ -36,6 +41,12 @@
   <a href="#" onclick="copyToClipboard('<%= hili %>')"
     class="w-full flex items-center justify-center py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg ">
     Copy</a>
+</div>
+
+<div class="my-1 mt-3 rounded-md shadow sm:mt-0">
+  <a href="#" onclick="copyToClipboard('<%= "[#{link.note}](#{hili})" %>')"
+    class="w-full flex items-center justify-center py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg ">
+    Copy as Markdown</a>
 </div>
 
 <% end %>
@@ -51,7 +62,7 @@
     <%= f.search_field :url_or_note_cont, 'data-autocomplete-target': "input", required: true, class: "block border w-full pl-5 py-3 text-base rounded-md placeholder-gray-500 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:flex-1 border-gray-300", 'placeholder': '查詢或製作短網址…', id: 'hiliit' %>
     <%= f.submit '🦫 🌳  HILI! 🌳 🦫', name: nil, class: "my-1 w-full flex items-center justify-center py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10" %>
     <div class="my-1 mt-3 rounded-md shadow sm:mt-0">
-      <a onclick="tryIt('🦫 輸入你接著網址在這裡後在前輸入易聯想的字並點擊送出https://hili.link')" href="#"
+      <a onclick="tryIt('🦫輸入你接著網址在這裡後在前輸入易聯想的字並點擊送出https://hili.link')" href="#"
         class="w-full flex items-center justify-center py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg ">
         製作範例
       </a>
