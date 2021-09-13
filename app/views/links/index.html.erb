@@ -32,8 +32,20 @@
     Copy as Markdown</a>
 </div>
 <p>
-<%= @hili[:note] %> 這個字的相關連結喔：
+<%= @hili[:note] %> 這個字的相關連結：
 </p>
+
+<% all_links_markdown = '' %>
+<% @links.each do |link| %>
+  <% hili = "#{link.url}#:~:text=#{link.note}" %>
+  <% all_links_markdown += "[#{link.note}](#{hili}) " %>
+<% end %>
+<div class="my-1 mt-3 rounded-md shadow sm:mt-0">
+  <a href="#" onclick="copyToClipboard('<%= all_links_markdown %>')"
+    class="w-full flex items-center justify-center py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg ">
+    Copy all Hili links search result as Markdown</a>
+</div>
+
 <% @links.each do |link| %>
 <% hili = "#{link.url}#:~:text=#{link.note}" %>
 <%= link_to notify(link.note), hili, target: '_blank', style: "text-decoration:none; color:#{random_colors}" %>
