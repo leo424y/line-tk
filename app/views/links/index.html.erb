@@ -37,7 +37,7 @@
 
 <% all_links_markdown = '' %>
 <% @links.each do |link| %>
-  <% hili = "#{link.url}#:~:text=#{link.note}" %>
+  <% hili = "#{link.url}#:~:text=#{CGI.escape link.note}" %>
   <% all_links_markdown += "[#{link.note}](#{hili}) " %>
 <% end %>
 <div class="my-1 mt-3 rounded-md shadow sm:mt-0">
@@ -47,7 +47,7 @@
 </div>
 
 <% @links.each do |link| %>
-<% hili = "#{link.url}#:~:text=#{link.note}" %>
+<% hili = "#{link.url}#:~:text=#{CGI.escape link.note}" %>
 <%= link_to notify(link.note), hili, target: '_blank', style: "text-decoration:none; color:#{random_colors}" %>
 <div class="my-1 mt-3 rounded-md shadow sm:mt-0">
   <a href="#" onclick="copyToClipboard('<%= hili %>')"
