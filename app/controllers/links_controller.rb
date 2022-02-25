@@ -126,6 +126,7 @@ class LinksController < ApplicationController
     session[:mail]=params[:mail]
     redirect_to link_path(Link.all.sample)
   end
+
   # GET /links/new
   def new
     @link = Link.new

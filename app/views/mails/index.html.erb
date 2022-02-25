@@ -1,0 +1,6 @@
+<div class="w-screen p-3"><%= "#{@mail} was liked..." %></div>
+<hr>
+<% @links.each do |link| %>
+<a href="<%= link_path(link) %>" ><div class="w-screen p-3"><%= link.note %></div></a>
+<hr>
+<% end %>

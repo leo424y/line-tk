@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get :skip, on: :member
     get :mail, on: :member
   end
+  resources :mails
   root 'links#index'
   get :autocomplete_links, to: 'links#autocomplete'
 
