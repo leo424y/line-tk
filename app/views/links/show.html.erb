@@ -1,16 +1,36 @@
-<div class="grid grid-cols-3 gap-4">
+<div class='relative'>
+<div>
+<%= form_tag mail_link_path, method: :get, class:"form-inline" do %>
+    <%= text_field_tag :mail, params[:mail], placeholder: session[:mail] %>
+    <%= submit_tag "📬", name: nil, class: "btn btn-default" %>
+<% end %>
+</div>
+<div class="grid grid-cols-2 gap-4">
 <div class='col-span-2'>
 <a href="<%= like_link_path(@link) %>" class="max-w-md mx-auto text-2xl text-gray-500 sm:text-2xl md:mt-5 md:max-w-3xl" class="flex-col rounded-sm shadow-lg overflow-hidden">
   <div class="flex-1 bg-gray-900 p-6 flex flex-col justify-between">
     <div class="flex-1">
-        <p class="text-2xl font-semibold text-gray-100 line-clamp-2 m-10">
+        <p class="text-2xl font-semibold text-gray-100 m-10">
 <%= @link.note %>
         </p>
     </div>
   </div>
 </a>
 </div>
-<div class=''>
+</div>
+<div class="fixed bottom-0 grid grid-cols-2 gap-4">
+<div class='col-span-1'>
+<a href="<%= like_link_path(@link) %>" class="max-w-md mx-auto text-2xl text-gray-500 sm:text-2xl md:mt-5 md:max-w-3xl" class="flex-col rounded-sm shadow-lg overflow-hidden">
+  <div class="flex-1 bg-green-100 p-6 flex flex-col justify-between">
+    <div class="flex-1">
+        <p class="text-2xl font-semibold text-gray-100 line-clamp-2 m-10">
+.
+        </p>
+    </div>
+  </div>
+</a>
+</div>
+<div class='col-span-1'>
 <a href="<%= skip_link_path(@link) %>" class="max-w-md mx-auto text-2xl text-gray-500 sm:text-2xl md:mt-5 md:max-w-3xl" class="flex-col rounded-sm shadow-lg overflow-hidden">
   <div class="flex-1 bg-gray-100 p-6 flex flex-col justify-between">
     <div class="flex-1">
@@ -21,15 +41,9 @@
   </div>
 </a>
 </div>
-
-<div>
-<%= form_tag mail_link_path, method: :get, class:"form-inline" do %>
-    <%= text_field_tag :mail, params[:mail], placeholder: session[:mail] %>
-    <%= submit_tag "📬", name: nil, class: "btn btn-default" %>
-<% end %>
-</div>
 </div>
 
+</div>
 
 <%# link_to 'Edit', edit_link_path(@link) %>
 <%# link_to 'Back', links_path %>
