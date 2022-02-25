@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :x, controller: 'links'
+
   resources :links do
     get :like, on: :member
     get :skip, on: :member
