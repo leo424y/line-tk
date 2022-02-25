@@ -6,7 +6,7 @@ class LinksController < ApplicationController
   require 'line/bot'  # gem 'link-bot-api'
 
 
-  before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :set_link, only: [:show, :edit, :update, :destroy, :like]
   skip_before_action :verify_authenticity_token
 
   def client
@@ -113,6 +113,19 @@ class LinksController < ApplicationController
     end
   end
 
+  def like
+    @link.like.create(mail: session[:mail])
+    redirect_to link_path(Link.all.sample)
+  end
+
+  def skip
+    redirect_to link_path(Link.all.sample)
+  end
+
+  def mail
+    session[:mail]=params[:mail]
+    redirect_to link_path(Link.all.sample)
+  end
   # GET /links/new
   def new
     @link = Link.new

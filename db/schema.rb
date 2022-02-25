@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_13_050423) do
+ActiveRecord::Schema.define(version: 2022_02_25_030723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "link_id"
+    t.string "mail"
+    t.string "note"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["mail"], name: "index_likes_on_mail"
+  end
 
   create_table "links", force: :cascade do |t|
     t.string "note"

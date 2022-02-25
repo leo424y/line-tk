@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :links
+  resources :links do
+    get :like, on: :member
+    get :skip, on: :member
+    get :mail, on: :member
+  end
   root 'links#index'
   get :autocomplete_links, to: 'links#autocomplete'
 
