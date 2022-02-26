@@ -2,7 +2,7 @@
 <div>
 <%= form_tag mail_link_path, method: :get, class:"form-inline px-10" do %>
   <%# submit_tag "", name: nil, class: "btn btn-default" %>
-  <%= text_field_tag :mail, params[:mail], class: 'w-full mt-12', placeholder: session[:mail].present? ? session[:mail] : 'Your ID/Email/Phone..' %>
+  <%= text_field_tag :mail, params[:mail], class: 'w-full mt-16', placeholder: session[:mail].present? ? session[:mail] : 'Your ID/Email/Phone..' %>
 <% end %>
 </div>
 <div class='mt-2 px-10'>
