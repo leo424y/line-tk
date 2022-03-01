@@ -118,6 +118,10 @@ class LinksController < ApplicationController
     redirect_to link_path(Link.all.sample)
   end
 
+  def tag
+    @links = Link.find(Like.where(mail: params[:tag]).ids)
+  end
+
   def skip
     redirect_to link_path(Link.all.sample)
   end
