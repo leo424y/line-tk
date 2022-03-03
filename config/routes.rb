@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '/:lihi', to: 'links#lihi'
 
   get '/t/:tag', to: 'links#tag'
+  get '/r/d', to: 'links#skip'
 
   post '/callback', to: 'links#callback'
 end
