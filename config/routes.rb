@@ -17,10 +17,10 @@ Rails.application.routes.draw do
   to: 'links#index',
   constraints: ->(request){ request.query_parameters["i"].present? }
 
+  get '/r', to: 'links#skip'
   get '/:lihi', to: 'links#lihi'
 
   get '/t/:tag', to: 'links#tag'
-  get '/r/d', to: 'links#skip'
 
   post '/callback', to: 'links#callback'
 end
