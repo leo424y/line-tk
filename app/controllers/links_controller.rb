@@ -119,7 +119,7 @@ class LinksController < ApplicationController
   end
 
   def tag
-    @links = Link.find(Like.where(mail: params[:tag]).ids).reverse
+    @links = Link.where(id: Like.where(mail: params[:tag]).pluck(:link_id)).reverse
   end
 
   def skip
