@@ -1,4 +1,4 @@
-<div class="w-screen p-3"><%= "#{@mail}..." %></div>
+<div class="w-screen p-3"><%= "#{params[:tag]}..." %></div>
 <hr>
 <% @links.each do |link| %>
 <a href="<%= link_path(link) %>" ><div class="w-screen p-3"><%= link.note %></div></a>
