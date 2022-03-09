@@ -1,17 +1,21 @@
 <div class='relative'>
 <div>
-<%= form_tag mail_link_path, method: :get, class:"form-inline px-10" do %>
+<%= form_tag mail_link_path, method: :get, class:"form-inline px-4" do %>
   <%# submit_tag "", name: nil, class: "btn btn-default" %>
-  <%= text_field_tag :mail, params[:mail], class: 'w-full mt-16', placeholder: session[:mail].present? ? session[:mail] : 'Your ID/Email/Phone..' %>
+  <%= text_field_tag :mail, params[:mail], class: 'w-full', placeholder: session[:mail].present? ? session[:mail] : 'Your ID/Email/Phone..' %>
 <% end %>
 </div>
-<div class='mt-2 px-10'>
+<%
+=begin%>
+ <div class='mt-2 px-4'>
 <u><%= "https://17yo.ga/x/#{@link.id}" %></u>
-</div>
+</div> 
+<%
+=end%>
 <div class="grid grid-cols-2 gap-4">
 <div class='col-span-2'>
 <a href="<%= @link.url %>" target='_blank' class="max-w-md mx-auto text-2xl text-gray-500 sm:text-2xl md:mt-5 md:max-w-3xl" class="flex-col rounded-sm shadow-lg overflow-hidden">
-  <div class="flex-1 px-10 flex flex-col justify-between">
+  <div class="flex-1 px-4 flex flex-col justify-between">
     <div class="flex-1">
       <p class="text-4xl font-bold text-gray-600 text-justify leading-normal">
         <%= @link.note %>
